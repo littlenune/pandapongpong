@@ -4,28 +4,23 @@
 var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super(screenHeight,screenWidth);
+        this.scheduleUpdate();
         this.background = new Background();
         this.addChild(this.background);
         this.background.setPosition( new cc.Point( screenWidth / 2 , screenHeight/2 ));
         this.player = new Player();
         this.player.setPosition(new cc.Point( screenWidth / 2 , 150 ));
         this.addChild(this.player);
+
+        this.createItem();
+
+        this.createBomb();
+
         this.addKeyboardHandlers();
-        this.items = null;
-
-    },
-
-    onKeyDown: function( keyCode, event ) {
-        if ( keyCode == cc.KEY.left ) {
-            this.player.updateLEFT();
-            this.createItems();
-        }
-        else if ( keyCode == cc.KEY.right ){
-            this.player.updateRIGHT();
-            this.createItems();
-        }
-    },
-    onKeyUp: function( keyCode, event ) {
+        this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
+        this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
+        this.addChild( this.scoreLabel );
+        return true;
     },
     addKeyboardHandlers: function() {
         var self = this;
@@ -39,16 +34,42 @@ var GameLayer = cc.LayerColor.extend({
             }
         }, this);
     },
-    createItems: function() {
+    onKeyDown: function( keyCode, event ) {
+        if ( keyCode == cc.KEY.left ) {
+            this.player.updateLEFT();
+        }
+        else if ( keyCode == cc.KEY.right ){
+            this.player.updateRIGHT();
+        }
+    },
+    onKeyUp: function( keyCode, event ) {
+        this.player.initWithFile( 'res/images/panda.png' );
+    },
+    update : function() {
+        if (this.items.closeTo(this.player)) {
+            this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+            this.player.initWithFile('res/images/pandaEat.png');
+            this.items.randomPosition();
+        }
+        else if ( this.bomb.closeTo( this.player )){
+            this.scoreLabel.setString(parseInt(this.scoreLabel.string) - 1);
+            this.player.initWithFile('res/images/pandaEat.png');
+            this.bomb.randomPosition();
+        }
+    },
+    createItem : function(){
         this.items = new Items();
-        this.items.setPosition( new cc.Point( (Math.random()*700) , 650));
         this.addChild( this.items );
+        this.items.randomPosition();
         this.items.scheduleUpdate();
     },
+    createBomb : function () {
+        this.bomb = new Bomb();
+        this.addChild( this.bomb );
+        this.bomb.randomPosition();
+        this.bomb.scheduleUpdate();
+    }
 });
-
-
-
 var StartScene = cc.Scene.extend({
     onEnter: function() {
         this._super();

@@ -1,8 +1,8 @@
 
-var Items = cc.Sprite.extend({
+var Bomb = cc.Sprite.extend({
     ctor: function() {
         this._super();
-        this.initWithFile( 'res/images/bread.png' );
+        this.initWithFile( 'res/images/bomb.png' );
         this.vy = 5;
         this.started = true;
 
@@ -23,14 +23,14 @@ var Items = cc.Sprite.extend({
     randomPosition: function() {
         var x,y;
         x = 100+(100*Math.round((Math.random()*5)));
-        y = 650;
+        y = 1200;
         return this.setPosition( new cc.Point( x, y ) );
     },
     closeTo: function( obj ) {
         var myPos = this.getPosition();
         var oPos = obj.getPosition();
         return ( Math.abs( myPos.x - oPos.x) <= 10) &&
-        ( Math.abs(myPos.y - oPos.y)  <= 10 );
+            ( Math.abs(myPos.y - oPos.y)  <= 10 );
 
     }
 });
