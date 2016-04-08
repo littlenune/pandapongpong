@@ -24,8 +24,8 @@ var Player = cc.Sprite.extend({
 
         if ( position.x + 100 <= screenWidth-100  ) {
             this.setPosition ( new cc.Point ( position.x + 100 , position.y ) );
-    }
-    else {  this.setPosition ( new cc.Point ( screenWidth-100 , position.y ) )
+        }
+        else {  this.setPosition ( new cc.Point ( screenWidth-100 , position.y ) )
         }
     }
 });
