@@ -16,7 +16,6 @@ var Player = cc.Sprite.extend({
         else {
             this.setPosition ( new cc.Point ( 100 , position.y ) );
         }
-
     },
     updateRIGHT: function(){
         var position = this.getPosition();

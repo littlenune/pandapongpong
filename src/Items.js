@@ -3,7 +3,7 @@ var Items = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/bread.png' );
-        this.vy = 5;
+        this.vy = 4;
         this.started = true;
 
     },
@@ -15,6 +15,7 @@ var Items = cc.Sprite.extend({
 
         }
         if ( this.getPosition().y == -10)
+
             this.randomPosition();
     },
     start: function() {
@@ -23,7 +24,7 @@ var Items = cc.Sprite.extend({
     randomPosition: function() {
         var x,y;
         x = 100+(100*Math.round((Math.random()*5)));
-        y = 650;
+        y = 650+(Math.round(Math.random())*50);
         return this.setPosition( new cc.Point( x, y ) );
     },
     closeTo: function( obj ) {

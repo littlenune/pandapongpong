@@ -20,6 +20,10 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
         this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
         this.addChild( this.scoreLabel );
+
+        this.health = cc.LabelTTF.create('3','Arial',50);
+        this.health.setPosition( new cc.Point( 200, 550 ) );
+        this.addChild( this.health );
         return true;
     },
     addKeyboardHandlers: function() {
@@ -46,19 +50,37 @@ var GameLayer = cc.LayerColor.extend({
         this.player.initWithFile( 'res/images/panda.png' );
     },
     update : function() {
-        for (var i = 0; i <= 3; i++) {
-            if (this.items[i].closeTo(this.player)) {
-                this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
-                this.player.initWithFile('res/images/pandaEat.png');
-                this.items[i].randomPosition();
+        //if ( !this.checkDeath()) {
+            for (var i = 0; i <= 3; i++) {
+                if (this.items[i].closeTo(this.player)) {
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.items[i].randomPosition();
+                    //this.updateHealth();
+                }
+                else if (this.bomb[i].closeTo(this.player)) {
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) - 1);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.bomb.randomPosition();
+                }
             }
-            else if (this.bomb.closeTo(this.player)) {
-                this.scoreLabel.setString(parseInt(this.scoreLabel.string) - 1);
-                this.player.initWithFile('res/images/pandaEat.png');
-                this.bomb.randomPosition();
-            }
-        }
+        //}
     },
+//    updateHealth : function() {
+//        for ( var i = 0 ; i <= 1 ; i++) {
+//            if ( this.bomb[i].closeTo(this.player)){
+//                this.health.setString(parseInt(this.health.string) - 1);
+//                this.player.initWithFile('res/images/pandaEat.png');
+//                this.bomb[i].randomPosition();
+//            }
+//        }
+//    }
+//    checkDeath : function() {
+//    if ( this.health.getString() == 0 ){
+//        this.console("Game Over");
+//        return true;
+//    }
+//},
     createItem : function() {
         this.items = [];
         for (var i = 0; i <= 3; i++) {
@@ -67,12 +89,16 @@ var GameLayer = cc.LayerColor.extend({
             this.items[i].randomPosition();
             this.items[i].scheduleUpdate();
         }
+
     },
     createBomb : function () {
-        this.bomb = new Bomb();
-        this.addChild( this.bomb );
-        this.bomb.randomPosition();
-        this.bomb.scheduleUpdate();
+        this.bomb = [];
+        for ( var i = 0 ; i <= 3 ; i++) {
+            this.bomb[i] = new Bomb();
+            this.addChild(this.bomb[i]);
+            this.bomb[i].randomPosition();
+            this.bomb[i].scheduleUpdate();
+        }
     }
 });
 var StartScene = cc.Scene.extend({
