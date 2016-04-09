@@ -58,10 +58,15 @@ var GameLayer = cc.LayerColor.extend({
                     this.items[i].randomPosition();
                     //this.updateHealth();
                 }
-                else if (this.bomb[i].closeTo(this.player)) {
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) - 1);
+                else if (this.bomb.closeTo(this.player)) {
+                    this.health.setString(parseInt(this.health.string) - 1);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.bomb.randomPosition();
+                }
+                else if ( this.bomb2.closeTo(this.player)){
+                this.health.setString(parseInt(this.health.string) - 1);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.bomb2.randomPosition();
                 }
             }
         //}
@@ -92,13 +97,14 @@ var GameLayer = cc.LayerColor.extend({
 
     },
     createBomb : function () {
-        this.bomb = [];
-        for ( var i = 0 ; i <= 3 ; i++) {
-            this.bomb[i] = new Bomb();
-            this.addChild(this.bomb[i]);
-            this.bomb[i].randomPosition();
-            this.bomb[i].scheduleUpdate();
-        }
+        this.bomb = new Bomb();
+        this.bomb2 = new Bomb();
+        this.addChild(this.bomb);
+        this.bomb.randomPosition();
+        this.bomb.scheduleUpdate();
+        this.addChild(this.bomb2);
+        this.bomb2.randomPosition();
+        this.bomb2.scheduleUpdate();
     }
 });
 var StartScene = cc.Scene.extend({
