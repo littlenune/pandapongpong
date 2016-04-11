@@ -12,19 +12,16 @@ var GameLayer = cc.LayerColor.extend({
         this.player.setPosition(new cc.Point( screenWidth / 2 , 150 ));
         this.addChild(this.player);
 
-        this.createItem();
-
-        this.createBomb();
-
         this.addKeyboardHandlers();
         this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
         this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
         this.addChild( this.scoreLabel );
-
+        this.startGame = false;
         this.health = cc.LabelTTF.create('3','Arial',50);
         this.health.setPosition( new cc.Point( 200, 550 ) );
         this.addChild( this.health );
         return true;
+
     },
     addKeyboardHandlers: function() {
         var self = this;
@@ -32,6 +29,7 @@ var GameLayer = cc.LayerColor.extend({
             event: cc.EventListener.KEYBOARD,
             onKeyPressed : function( keyCode, event ) {
                 self.onKeyDown( keyCode, event );
+                console.log(keyCode);
             },
             onKeyReleased: function( keyCode, event ) {
                 self.onKeyUp( keyCode, event );
@@ -39,6 +37,10 @@ var GameLayer = cc.LayerColor.extend({
         }, this);
     },
     onKeyDown: function( keyCode, event ) {
+        if ( keyCode == 32 && this.startGame == false){
+            this.createItem();
+            this.createBomb();
+        }
         if ( keyCode == cc.KEY.left ) {
             this.player.updateLEFT();
         }
@@ -49,28 +51,30 @@ var GameLayer = cc.LayerColor.extend({
     onKeyUp: function( keyCode, event ) {
         this.player.initWithFile( 'res/images/panda.png' );
     },
-    update : function() {
+    //update : function() {
         //if ( !this.checkDeath()) {
-            for (var i = 0; i <= 3; i++) {
-                if (this.items[i].closeTo(this.player)) {
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.items[i].randomPosition();
-                    //this.updateHealth();
-                }
-                else if (this.bomb.closeTo(this.player)) {
-                    this.health.setString(parseInt(this.health.string) - 1);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.bomb.randomPosition();
-                }
-                else if ( this.bomb2.closeTo(this.player)){
-                this.health.setString(parseInt(this.health.string) - 1);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.bomb2.randomPosition();
-                }
-            }
+        //    for (var i = 0; i <= 3; i++) {
+        //        if (this.items[i].closeTo(this.player)) {
+        //            this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+        //            this.player.initWithFile('res/images/pandaEat.png');
+        //            this.items[i].randomPosition();
+        //            //this.updateHealth();
+        //        }
+        //        else if (this.bomb.closeTo(this.player)) {
+        //            this.health.setString(parseInt(this.health.string) - 1);
+        //            this.player.initWithFile('res/images/pandaEat.png');
+        //            this.bomb.randomPosition();
+        //        }
+        //        else if ( this.bomb2.closeTo(this.player)){
+        //            this.health.setString(parseInt(this.health.string) - 1);
+        //            this.player.initWithFile('res/images/pandaEat.png');
+        //            this.bomb2.randomPosition();
+        //
+        //        }
+        //    }
+
         //}
-    },
+    //},
 //    updateHealth : function() {
 //        for ( var i = 0 ; i <= 1 ; i++) {
 //            if ( this.bomb[i].closeTo(this.player)){
