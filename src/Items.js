@@ -3,7 +3,7 @@ var Items = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/bread.png' );
-        this.vy = 4;
+        this.vy = 5;
         this.started = true;
 
     },
@@ -15,7 +15,6 @@ var Items = cc.Sprite.extend({
 
         }
         if ( this.getPosition().y == -10)
-
             this.randomPosition();
     },
     start: function() {
@@ -31,7 +30,7 @@ var Items = cc.Sprite.extend({
         var myPos = this.getPosition();
         var oPos = obj.getPosition();
         return ( Math.abs( myPos.x - oPos.x) <= 10) &&
-        ( Math.abs(myPos.y - oPos.y)  <= 10 );
+            ( Math.abs(myPos.y - oPos.y)  <= 10 );
 
     }
 });
