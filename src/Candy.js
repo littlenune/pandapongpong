@@ -4,7 +4,7 @@
 var Candy = cc.Sprite.extend({
     ctor: function() {
         this._super();
-        this.initWithFile( 'res/images/bread.png' );
+        this.initWithFile( 'res/images/candy.png' );
         this.vy = 5;
         this.started = true;
 
@@ -25,7 +25,7 @@ var Candy = cc.Sprite.extend({
     randomPosition: function() {
         var x,y;
         x = 100+(100*Math.round((Math.random()*5)));
-        y = 650;
+        y = 900;
         return this.setPosition( new cc.Point( x, y ) );
     },
     closeTo: function( obj ) {
@@ -33,6 +33,5 @@ var Candy = cc.Sprite.extend({
         var oPos = obj.getPosition();
         return ( Math.abs( myPos.x - oPos.x) <= 10) &&
             ( Math.abs(myPos.y - oPos.y)  <= 10 );
-
     }
 });

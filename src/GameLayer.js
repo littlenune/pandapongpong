@@ -51,33 +51,64 @@ var GameLayer = cc.LayerColor.extend({
         this.player.initWithFile( 'res/images/panda.png' );
     },
     update : function() {
-        for (var i = 0; i <= 3; i++) {
-            if (this.items[i].closeTo(this.player)) {
+            if (this.bread.closeTo(this.player)) {
                 this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
                 this.player.initWithFile('res/images/pandaEat.png');
-                this.items[i].randomPosition();
+                this.bread.randomPosition();
+            }
+            else if ( this.icecream.closeTo(this.player)) {
+                this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
+                this.player.initWithFile('res/images/pandaEat.png');
+                this.icecream.randomPosition();
+            }
+            else if ( this.candy.closeTo(this.player)) {
+                this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
+                this.player.initWithFile('res/images/pandaEat.png');
+                this.candy.randomPosition();
             }
             else if (this.bomb.closeTo(this.player)) {
                 this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
                 this.player.initWithFile('res/images/pandaEat.png');
                 this.bomb.randomPosition();
             }
-        }
     },
-    createItem : function() {
-        this.items = [];
-        for (var i = 0; i <= 3; i++) {
-            this.items[i] = new Items();
-            if ( i == 0){
-                this.items[i].initWithFile('res/images/icecream.png');
-            }
-            else if ( i === 2){
-                this.items[i].initWithFile('res/images/candy.png');
-            }
-            this.addChild(this.items[i]);
-            this.items[i].randomPosition();
-            this.items[i].scheduleUpdate();
-        }
+    //createItem : function() {
+    //    this.items = [];
+    //    for (var i = 0; i <= 3; i++) {
+    //        this.items[i] = new Items();
+    //        if ( i == 0){
+    //            this.items[i].initWithFile('res/images/icecream.png');
+    //        }
+    //        else if ( i === 2){
+    //            this.items[i].initWithFile('res/images/candy.png');
+    //        }
+    //        this.addChild(this.items[i]);
+    //        this.items[i].randomPosition();
+    //        this.items[i].scheduleUpdate();
+    //    }
+    //},
+    createIcecream : function() {
+        this.icecream = new Icecream();
+        this.addChild(this.icecream);
+        this.icecream.randomPosition;
+        this.icecream.scheduleUpdate();
+    },
+    createBread : function(){
+        this.bread = new Bread();
+        this.addChild(this.bread);
+        this.bread.randomPosition();
+        this.bread.scheduleUpdate();
+    },
+    createCandy : function(){
+        this.candy = new Candy();
+        this.addChild(this.candy);
+        this.candy.randomPosition();
+        this.candy.scheduleUpdate();
+    },
+    createItem : function(){
+        this.createBread();
+        this.createIcecream();
+        this.createCandy();
     },
     createBomb : function () {
         this.bomb = new Bomb();
