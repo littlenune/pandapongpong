@@ -20,6 +20,11 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
         this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
         this.addChild( this.scoreLabel );
+
+        this.LifeLabel = cc.LabelTTP.create( '3' , 'Arial',50 );
+        this.LifeLabel.setPosition( new cc.Point( 500 , 550 ) );
+        this.addChild( this.LifeLabel );
+
         return true;
     },
     addKeyboardHandlers: function() {
@@ -53,7 +58,7 @@ var GameLayer = cc.LayerColor.extend({
                 this.items[i].randomPosition();
             }
             else if (this.bomb.closeTo(this.player)) {
-                this.scoreLabel.setString(parseInt(this.scoreLabel.string) - 1);
+                this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
                 this.player.initWithFile('res/images/pandaEat.png');
                 this.bomb.randomPosition();
             }
