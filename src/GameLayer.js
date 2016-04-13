@@ -21,7 +21,7 @@ var GameLayer = cc.LayerColor.extend({
         this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
         this.addChild( this.scoreLabel );
 
-        this.LifeLabel = cc.LabelTTP.create( '3' , 'Arial',50 );
+        this.LifeLabel = cc.LabelTTF.create( '3' , 'Arial',50 );
         this.LifeLabel.setPosition( new cc.Point( 500 , 550 ) );
         this.addChild( this.LifeLabel );
 
@@ -68,11 +68,10 @@ var GameLayer = cc.LayerColor.extend({
         this.items = [];
         for (var i = 0; i <= 3; i++) {
             this.items[i] = new Items();
-            var random = Math.round(Math.random()*3);
-            if ( random == 0 ){
+            if ( i == 0){
                 this.items[i].initWithFile('res/images/icecream.png');
             }
-            else if ( random == 1){
+            else if ( i === 2){
                 this.items[i].initWithFile('res/images/candy.png');
             }
             this.addChild(this.items[i]);

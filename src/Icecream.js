@@ -1,5 +1,7 @@
-
-var Items = cc.Sprite.extend({
+/**
+ * Created by Nune on 4/13/2016 AD.
+ */
+var Icecream = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/bread.png' );
