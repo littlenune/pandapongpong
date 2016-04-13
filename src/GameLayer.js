@@ -13,10 +13,6 @@ var GameLayer = cc.LayerColor.extend({
         this.player.setPosition(new cc.Point( screenWidth / 2 , 150 ));
         this.addChild(this.player);
 
-        this.createItem();
-
-        this.createBomb();
-
         this.addKeyboardHandlers();
         this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
         this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
@@ -30,6 +26,7 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.panda);
         this.panda.setPosition( new cc.Point ( screenWidth / 2 + 50 , 450 ));
 
+        this.startGame = false;
         return true;
     },
     addKeyboardHandlers: function() {
@@ -45,9 +42,11 @@ var GameLayer = cc.LayerColor.extend({
         }, this);
     },
     onKeyDown: function( keyCode, event ) {
-        if ( keyCode == cc.KEY.space ){
+        if ( keyCode == cc.KEY.space && this.startGame == false ){
             this.removeChild(this.panda);
-
+            this.startGame = true;
+            this.createItem();
+            this.createBomb();
         }
         if ( keyCode == cc.KEY.left ) {
             this.player.updateLEFT();
@@ -60,25 +59,27 @@ var GameLayer = cc.LayerColor.extend({
         this.player.initWithFile( 'res/images/panda.png' );
     },
     update : function() {
-            if (this.bread.closeTo(this.player)) {
-                this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
-                this.player.initWithFile('res/images/pandaEat.png');
-                this.bread.randomPosition();
-            }
-            else if ( this.icecream.closeTo(this.player)) {
-                this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
-                this.player.initWithFile('res/images/pandaEat.png');
-                this.icecream.randomPosition();
-            }
-            else if ( this.candy.closeTo(this.player)) {
-                this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
-                this.player.initWithFile('res/images/pandaEat.png');
-                this.candy.randomPosition();
-            }
-            else if (this.bomb.closeTo(this.player)) {
-                this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
-                this.player.initWithFile('res/images/pandaEat.png');
-                this.bomb.randomPosition();
+            if ( this.startGame == true ) {
+                if (this.bread.closeTo(this.player)) {
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.bread.randomPosition();
+                }
+                else if (this.icecream.closeTo(this.player)) {
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.icecream.randomPosition();
+                }
+                else if (this.candy.closeTo(this.player)) {
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.candy.randomPosition();
+                }
+                else if (this.bomb.closeTo(this.player)) {
+                    this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.bomb.randomPosition();
+                }
             }
     },
     //createItem : function() {
