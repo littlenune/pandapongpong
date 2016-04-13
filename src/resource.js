@@ -7,7 +7,8 @@ var res = {
     bomb_png: 'res/images/bomb.png',
     boom_png: 'res/images/boom.png',
     icecream_png: 'res.images/icecream.png',
-    candy_png: 'res/images/candy.png'
+    candy_png: 'res/images/candy.png',
+    pandaPongPong_png: 'res/images/pandaPongPong.png'
 };
 var g_resources = [];
 for (var i in res) {

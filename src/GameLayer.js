@@ -5,6 +5,7 @@ var GameLayer = cc.LayerColor.extend({
     init: function() {
         this._super(screenHeight,screenWidth);
         this.scheduleUpdate();
+
         this.background = new Background();
         this.addChild(this.background);
         this.background.setPosition( new cc.Point( screenWidth / 2 , screenHeight/2 ));
@@ -24,8 +25,10 @@ var GameLayer = cc.LayerColor.extend({
         this.LifeLabel = cc.LabelTTF.create( '3' , 'Arial',50 );
         this.LifeLabel.setPosition( new cc.Point( 500 , 550 ) );
         this.addChild( this.LifeLabel );
-        this.panda = new
-        this.initWithFile('res/images/pandaPongPong.png');
+
+        this.panda = new Panda();
+        this.addChild(this.panda);
+        this.panda.setPosition( new cc.Point ( screenWidth / 2 + 50 , 450 ));
 
         return true;
     },
@@ -42,6 +45,10 @@ var GameLayer = cc.LayerColor.extend({
         }, this);
     },
     onKeyDown: function( keyCode, event ) {
+        if ( keyCode == cc.KEY.space ){
+            this.removeChild(this.panda);
+
+        }
         if ( keyCode == cc.KEY.left ) {
             this.player.updateLEFT();
         }
