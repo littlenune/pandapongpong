@@ -24,6 +24,8 @@ var GameLayer = cc.LayerColor.extend({
         this.LifeLabel = cc.LabelTTF.create( '3' , 'Arial',50 );
         this.LifeLabel.setPosition( new cc.Point( 500 , 550 ) );
         this.addChild( this.LifeLabel );
+        this.panda = new
+        this.initWithFile('res/images/pandaPongPong.png');
 
         return true;
     },
