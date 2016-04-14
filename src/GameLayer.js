@@ -60,60 +60,62 @@ var GameLayer = cc.LayerColor.extend({
     },
     update : function() {
             if ( this.startGame == true ) {
-                if (this.bread.closeTo(this.player)) {
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.bread.randomPosition();
-                }
-                else if (this.icecream.closeTo(this.player)) {
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.icecream.randomPosition();
-                }
-                else if (this.candy.closeTo(this.player)) {
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.candy.randomPosition();
-                }
-                else if (this.bomb.closeTo(this.player)) {
-                    this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.bomb.randomPosition();
+                for ( var i = 0 ; i <= 1 ; i++) {
+                    if (this.bread[i].closeTo(this.player)) {
+                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+                        this.player.initWithFile('res/images/pandaEat.png');
+                        this.bread[i].randomPosition();
+                    }
+                    else if (this.icecream[i].closeTo(this.player)) {
+                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
+                        this.player.initWithFile('res/images/pandaEat.png');
+                        this.icecream[i].randomPosition();
+                    }
+                    else if (this.candy[i].closeTo(this.player)) {
+                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
+                        this.player.initWithFile('res/images/pandaEat.png');
+                        this.candy[i].randomPosition();
+                    }
+                    else if (this.bomb[i].closeTo(this.player)) {
+                        this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
+                        this.player.initWithFile('res/images/pandaEat.png');
+                        this.bomb[i].randomPosition();
+                    }
                 }
             }
     },
-    //createItem : function() {
-    //    this.items = [];
-    //    for (var i = 0; i <= 3; i++) {
-    //        this.items[i] = new Items();
-    //        if ( i == 0){
-    //            this.items[i].initWithFile('res/images/icecream.png');
-    //        }
-    //        else if ( i === 2){
-    //            this.items[i].initWithFile('res/images/candy.png');
-    //        }
-    //        this.addChild(this.items[i]);
-    //        this.items[i].randomPosition();
-    //        this.items[i].scheduleUpdate();
-    //    }
-    //},
     createIcecream : function() {
-        this.icecream = new Icecream();
-        this.addChild(this.icecream);
-        this.icecream.randomPosition;
-        this.icecream.scheduleUpdate();
+        this.icecream = [];
+        this.icecream[0] = new Icecream();
+        this.addChild(this.icecream[0]);
+        this.icecream[0].randomPosition();
+        this.icecream[0].scheduleUpdate();
+        this.icecream[1] = new Icecream();
+        this.addChild(this.icecream[1]);
+        this.icecream[1].randomPosition();
+        this.icecream[1].scheduleUpdate();
     },
     createBread : function(){
-        this.bread = new Bread();
-        this.addChild(this.bread);
-        this.bread.randomPosition();
-        this.bread.scheduleUpdate();
+        this.bread = [];
+        this.bread[0] = new Bread();
+        this.addChild(this.bread[0]);
+        this.bread[0].randomPosition();
+        this.bread[0].scheduleUpdate();
+        this.bread[1] = new Bread();
+        this.addChild(this.bread[1]);
+        this.bread[1].randomPosition();
+        this.bread[1].scheduleUpdate();
     },
     createCandy : function(){
-        this.candy = new Candy();
-        this.addChild(this.candy);
-        this.candy.randomPosition();
-        this.candy.scheduleUpdate();
+        this.candy = [];
+        this.candy[0] = new Candy();
+        this.addChild(this.candy[0]);
+        this.candy[0].randomPosition();
+        this.candy[0].scheduleUpdate();
+        this.candy[1] = new Candy();
+        this.addChild(this.candy[1]);
+        this.candy[1].randomPosition();
+        this.candy[1].scheduleUpdate();
     },
     createItem : function(){
         this.createBread();
@@ -121,10 +123,15 @@ var GameLayer = cc.LayerColor.extend({
         this.createCandy();
     },
     createBomb : function () {
-        this.bomb = new Bomb();
-        this.addChild( this.bomb );
-        this.bomb.randomPosition();
-        this.bomb.scheduleUpdate();
+        this.bomb = [];
+        this.bomb[0] = new Bomb();
+        this.addChild( this.bomb[0] );
+        this.bomb[0].randomPosition();
+        this.bomb[0].scheduleUpdate();
+        this.bomb[1] = new Bomb();
+        this.addChild(this.bomb[1]);
+        this.bomb[1].randomPosition();
+        this.bomb[1].scheduleUpdate();
     }
 });
 var StartScene = cc.Scene.extend({

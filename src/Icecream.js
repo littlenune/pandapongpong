@@ -25,7 +25,7 @@ var Icecream = cc.Sprite.extend({
     randomPosition: function() {
         var x,y;
         x = 100+(100*Math.round((Math.random()*5)));
-        y = 1200;
+        y = 650+((100*Math.round((Math.random()*5))));
         return this.setPosition( new cc.Point( x, y ) );
     },
     closeTo: function( obj ) {
