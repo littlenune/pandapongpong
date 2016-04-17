@@ -18,7 +18,10 @@ var res = {
     seven_png: 'res/images/number/seven.png',
     eight_png: 'res/images/number/eight.png',
     nine_png: 'res/images/number/nine.png',
-    zero_png: 'res/images/number/zero.png'
+    zero_png: 'res/images/number/zero.png',
+    spacebar_png: 'res/iamges/spacebar.png',
+    spacebar2_png: 'res/images/spacebar2.png',
+    eatSound_wav: 'res/effect/eatSound.wav'
 };
 var g_resources = [];
 for (var i in res) {

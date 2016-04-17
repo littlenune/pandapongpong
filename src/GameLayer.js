@@ -12,13 +12,15 @@ var GameLayer = cc.LayerColor.extend({
         this.player = new Player();
         this.player.setPosition(new cc.Point( screenWidth / 2 , 150 ));
         this.addChild(this.player);
+        this.player.scheduleUpdate();
+        //this.animation();
 
         this.addKeyboardHandlers();
 
-        //this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
-        //this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
-        //this.addChild( this.scoreLabel );
-        //
+        this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
+        this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
+        this.addChild( this.scoreLabel );
+
 
         this.LifeLabel = cc.LabelTTF.create( '3' , 'Arial',50 );
         this.LifeLabel.setPosition( new cc.Point( 500 , 550 ) );
@@ -26,10 +28,17 @@ var GameLayer = cc.LayerColor.extend({
 
         this.panda = new Panda();
         this.addChild(this.panda);
-        this.panda.setPosition( new cc.Point ( screenWidth / 2 + 50 , 450 ));
+        //this.movingAction = this.createAnimationAction();
+        //this.runAction( this.movingAction );
+        //
+        //this.createAnimationAction();
+        this.spacebar = new Spacebar();
+        this.addChild(this.spacebar);
+        this.spacebar.setPosition( new cc.Point ( screenWidth / 2 , 350 ));
 
-        this.scoreCount = 0;
-        this.jump == false;
+
+        //this.scoreCount = 0;
+        //this.jump == false;
         this.startGame = false;
         return true;
     },
@@ -48,6 +57,7 @@ var GameLayer = cc.LayerColor.extend({
     onKeyDown: function( keyCode, event ) {
         if ( keyCode == cc.KEY.space && this.startGame == false ){
             this.removeChild(this.panda);
+            this.removeChild(this.spacebar);
             this.startGame = true;
             this.createItem();
             this.createBomb();
@@ -58,9 +68,8 @@ var GameLayer = cc.LayerColor.extend({
         else if ( keyCode == cc.KEY.right ){
             this.player.updateRIGHT();
         }
-        else if ( keyCode == cc.KEY.up){
-            this.jump == true;
-            this.player.updateJump();
+        else if ( keyCode == cc.KEY.up) {
+            this.player.updateJUMP();
         }
     },
     onKeyUp: function( keyCode, event ) {
@@ -73,30 +82,37 @@ var GameLayer = cc.LayerColor.extend({
             if ( this.startGame == true ) {
                 for ( var i = 0 ; i <= 1 ; i++) {
                     if (this.bread[i].closeTo(this.player)) {
+                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
                         this.scoreCount+=1;
-                        this.updateScore(this.scoreCount);
-                        //this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+                        //this.updateScore(this.scoreCount);
+                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
                         this.player.initWithFile('res/images/pandaEat.png');
                         this.bread[i].randomPosition();
                     }
                     else if (this.icecream[i].closeTo(this.player)) {
+                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
                         this.scoreCount+=5;
-                        this.updateScore(this.scoreCount);
-                        //this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
+                        //this.updateScore(this.scoreCount);
+                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
                         this.player.initWithFile('res/images/pandaEat.png');
                         this.icecream[i].randomPosition();
                     }
                     else if (this.candy[i].closeTo(this.player)) {
+                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
                         this.scoreCount+10;
-                        this.updateScore(this.scoreCount);
-                        //this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
+                        //this.updateScore(this.scoreCount);
+                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
                         this.player.initWithFile('res/images/pandaEat.png');
                         this.candy[i].randomPosition();
                     }
                     else if (this.bomb[i].closeTo(this.player)) {
+                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
                         this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
                         this.player.initWithFile('res/images/pandaEat.png');
                         this.bomb[i].randomPosition();
+                        //if ( parseInt(this.LifeLabel.string) == 0{
+                        //    this.startGame == false;
+                        //}
                     }
                 }
             }
@@ -150,50 +166,68 @@ var GameLayer = cc.LayerColor.extend({
         this.bomb[1].randomPosition();
         this.bomb[1].scheduleUpdate();
     },
-    updateScore: function( score ){
-        var posX = 750;
-        this.rightDigit = [];
-        var i = 0;
-        while ( score > 0){
-            this.rightDigit[i] = new Score;
-            this.addChild(this.rightDigit[i]);
-            this.rightDigit[i] = score % 10;
-            score = score / 10;
-        if ( this.rightDigit[i] == 0){
-            this.rightDigit[i].setSelectedImage(Zero);
-        }
-        else if ( this.rightDigit[i] == 1){
-            this.rightDigit[i].initWithFile('res/iamges/number/one.png');
-        }
-        else if ( this.rightDigit[i] == 2){
-            this.rightDigit[i].initWithFile('res/iamges/number/two.png');
-        }
-        else if ( this.rightDigit[i] == 3){
-            this.rightDigit[i].initWithFile('res/images/number/three.png');
-        }
-        else if ( this.rightDigit[i] == 4 ){
-            this.rightDigit[i].initWithFile('res/images/number/four.png');
-        }
-        else if ( this.rightDigit[i] == 5 ){
-            this.rightDigit[i].initWithFile('res/images/number/five.png');
-        }
-        else if ( this.rightDigit[i] == 6 ){
-            this.rightDigit[i].initWithFile('res/images/number/six.png');
-        }
-        else if ( this.rightDigit[i] == 7 ){
-            this.rightDigit[i].initWithFile('res/images/number/seven.png');
-        }
-        else if ( this.rightDigit[i] == 8 ){
-            this.rightDigit[i].initWithFile('res/images/number/eight.png');
-        }
-        else if ( this.rightDigit[i] == 9 ){
-            this.rightDigit[i].initWithFile('res/images/number/nine.png');
-        }
-            this.rightDigit[i].setPosition(posX,550);
-            posX-=50;
-            i++;
-        }
-    }
+    //updateScore: function( score ){
+    //    var posX = 750;
+    //    this.score = [];
+    //    var i = 0;
+    //    while ( score > 0){
+    //        this.score[i] = new Score;
+    //        this.addChild(this.score[i]);
+    //        this.score[i] = score % 10;
+    //        score = score / 10;
+    //    if ( this.score[i] == 0){
+    //        this.score[i].initWithFile('res/images/number/zero.png');
+    //        //this.score[i].setSelectedImage(Zero);
+    //    }
+    //    else if ( this.score[i] == 1){
+    //        //this.score[i].setSelectedImage(One);
+    //        this.score[i].initWithFile('res/iamges/number/one.png');
+    //    }
+    //    else if ( this.score[i] == 2){
+    //        //this.score[i].setSelectedImage(Two);
+    //        this.score[i].initWithFile('res/iamges/number/two.png');
+    //    }
+    //    else if ( this.score[i] == 3){
+    //        //this.score[i].setSelectedImage(Three);
+    //        this.score[i].initWithFile('res/images/number/three.png');
+    //    }
+    //    else if ( this.score[i] == 4 ){
+    //        //this.score[i].setSelectedImage(Four);
+    //        this.score[i].initWithFile('res/images/number/four.png');
+    //    }
+    //    else if ( this.score[i] == 5 ){
+    //        //this.score[i].setSelectedImage(Five);
+    //        this.score[i].initWithFile('res/images/number/five.png');
+    //    }
+    //    else if ( this.score[i] == 6 ){
+    //        //this.score[i].setSelectedImage(Six);
+    //        this.score[i].initWithFile('res/images/number/six.png');
+    //    }
+    //    else if ( this.score[i] == 7 ){
+    //        //this.score[i].setSelectedImage(Seven);
+    //        this.score[i].initWithFile('res/images/number/seven.png');
+    //    }
+    //    else if ( this.score[i] == 8 ){
+    //        //this.score[i].setSelectedImage(Eight);
+    //        this.score[i].initWithFile('res/images/number/eight.png');
+    //    }
+    //    else if ( this.score[i] == 9 ){
+    //        //this.score[i].setSelectedImage(Nine);
+    //        this.score[i].initWithFile('res/images/number/nine.png');
+    //    }
+    //        this.score[i].setPosition(posX,550);
+    //        posX-=50;
+    //        i++;
+    //    }
+    //},
+    //createAnimationAction: function() {
+    //    var animation = new cc.Animation.create();
+    //    animation.addSpriteFrameWithFile( 'res/images/spacebar1.png' );
+    //    animation.addSpriteFrameWithFile( 'res/images/spacebar2.png' );
+    //    console.log( animation.getDelayPerUnit() );
+    //    animation.setDelayPerUnit( 0.2 );
+    //    return cc.RepeatForever.create( cc.Animate.create( animation ) );
+    //}
 });
 var StartScene = cc.Scene.extend({
     onEnter: function() {
