@@ -20,6 +20,7 @@
         "src/Bomb.js",
         "src/Candy.js",
         "src/Icecream.js",
-        "src/Panda.js"
+        "src/Panda.js",
+        "src/Score.js"
     ]
 }

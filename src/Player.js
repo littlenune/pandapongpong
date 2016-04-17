@@ -23,6 +23,10 @@ var Player = cc.Sprite.extend({
             position.x += (100+this.velocity);
             this.setPosition ( new cc.Point ( position.x , position.y ) );
         }
+    },
+    updateJump: function(){
+        var position = this.getPosition();
+        this.setPosition( new cc.Point ( position.x , position.y + 170) );
     }
 });
 Player.DIR = {

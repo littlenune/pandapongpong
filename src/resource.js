@@ -8,7 +8,17 @@ var res = {
     boom_png: 'res/images/boom.png',
     icecream_png: 'res.images/icecream.png',
     candy_png: 'res/images/candy.png',
-    pandaPongPong_png: 'res/images/pandaPongPong.png'
+    pandaPongPong_png: 'res/images/pandaPongPong.png',
+    one_png: 'res/images/number/one.png',
+    two_png: 'res/images/number/two.png',
+    three_png: 'res/images/number/three.png',
+    four_png: 'res/images/number/four.png',
+    five_png: 'res/images/number/five.png',
+    six_png: 'res/images/number/six.png',
+    seven_png: 'res/images/number/seven.png',
+    eight_png: 'res/images/number/eight.png',
+    nine_png: 'res/images/number/nine.png',
+    zero_png: 'res/images/number/zero.png'
 };
 var g_resources = [];
 for (var i in res) {
