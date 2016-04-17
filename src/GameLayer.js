@@ -17,27 +17,24 @@ var GameLayer = cc.LayerColor.extend({
 
         this.addKeyboardHandlers();
 
-        this.scoreLabel = cc.LabelTTF.create( '0', 'Arial', 40 );
+        this.scoreLabel = cc.LabelTTF.create( '0', 'Phosphate', 60 );
         this.scoreLabel.setPosition( new cc.Point( 750, 550 ) );
         this.addChild( this.scoreLabel );
 
-
-        this.LifeLabel = cc.LabelTTF.create( '3' , 'Arial',50 );
-        this.LifeLabel.setPosition( new cc.Point( 500 , 550 ) );
-        this.addChild( this.LifeLabel );
+        this.life = cc.LabelTTF.create( 'Life : ', 'Phosphate' , 50);
+        this.life.setPosition(new cc.Point( 400 , 550 ));
+        this.addChild(this.life);
+        this.lifeLabel = cc.LabelTTF.create( '3' , 'Phosphate',60 );
+        this.lifeLabel.setPosition( new cc.Point( 500 , 550 ) );
+        this.addChild( this.lifeLabel );
 
         this.panda = new Panda();
         this.addChild(this.panda);
-        //this.movingAction = this.createAnimationAction();
-        //this.runAction( this.movingAction );
-        //
-        //this.createAnimationAction();
+
         this.spacebar = new Spacebar();
         this.addChild(this.spacebar);
         this.spacebar.setPosition( new cc.Point ( screenWidth / 2 , 350 ));
 
-
-        //this.scoreCount = 0;
         //this.jump == false;
         cc.audioEngine.playEffect( 'res/effect/gameSong.mp3',true );
         this.startGame = false;
@@ -107,13 +104,16 @@ var GameLayer = cc.LayerColor.extend({
                         this.candy[i].randomPosition();
                     }
                     else if (this.bomb[i].closeTo(this.player)) {
+                        var lifeCount = parseInt(this.lifeLabel.string) - 1;
                         cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                        this.LifeLabel.setString(parseInt(this.LifeLabel.string) - 1);
+                        this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
                         this.player.initWithFile('res/images/pandaEat.png');
                         this.bomb[i].randomPosition();
-                        //if ( parseInt(this.LifeLabel.string) == 0{
-                        //    this.startGame == false;
-                        //}
+                        if ( lifeCount == 0){
+                            this.startGame == false;
+                            cc.audioEngine.end();
+                            cc.audioEngine.playEffect( 'res/effect/tata.mp3',true );
+                        }
                     }
                 }
             }
@@ -167,68 +167,6 @@ var GameLayer = cc.LayerColor.extend({
         this.bomb[1].randomPosition();
         this.bomb[1].scheduleUpdate();
     },
-    //updateScore: function( score ){
-    //    var posX = 750;
-    //    this.score = [];
-    //    var i = 0;
-    //    while ( score > 0){
-    //        this.score[i] = new Score;
-    //        this.addChild(this.score[i]);
-    //        this.score[i] = score % 10;
-    //        score = score / 10;
-    //    if ( this.score[i] == 0){
-    //        this.score[i].initWithFile('res/images/number/zero.png');
-    //        //this.score[i].setSelectedImage(Zero);
-    //    }
-    //    else if ( this.score[i] == 1){
-    //        //this.score[i].setSelectedImage(One);
-    //        this.score[i].initWithFile('res/iamges/number/one.png');
-    //    }
-    //    else if ( this.score[i] == 2){
-    //        //this.score[i].setSelectedImage(Two);
-    //        this.score[i].initWithFile('res/iamges/number/two.png');
-    //    }
-    //    else if ( this.score[i] == 3){
-    //        //this.score[i].setSelectedImage(Three);
-    //        this.score[i].initWithFile('res/images/number/three.png');
-    //    }
-    //    else if ( this.score[i] == 4 ){
-    //        //this.score[i].setSelectedImage(Four);
-    //        this.score[i].initWithFile('res/images/number/four.png');
-    //    }
-    //    else if ( this.score[i] == 5 ){
-    //        //this.score[i].setSelectedImage(Five);
-    //        this.score[i].initWithFile('res/images/number/five.png');
-    //    }
-    //    else if ( this.score[i] == 6 ){
-    //        //this.score[i].setSelectedImage(Six);
-    //        this.score[i].initWithFile('res/images/number/six.png');
-    //    }
-    //    else if ( this.score[i] == 7 ){
-    //        //this.score[i].setSelectedImage(Seven);
-    //        this.score[i].initWithFile('res/images/number/seven.png');
-    //    }
-    //    else if ( this.score[i] == 8 ){
-    //        //this.score[i].setSelectedImage(Eight);
-    //        this.score[i].initWithFile('res/images/number/eight.png');
-    //    }
-    //    else if ( this.score[i] == 9 ){
-    //        //this.score[i].setSelectedImage(Nine);
-    //        this.score[i].initWithFile('res/images/number/nine.png');
-    //    }
-    //        this.score[i].setPosition(posX,550);
-    //        posX-=50;
-    //        i++;
-    //    }
-    //},
-    //createAnimationAction: function() {
-    //    var animation = new cc.Animation.create();
-    //    animation.addSpriteFrameWithFile( 'res/images/spacebar1.png' );
-    //    animation.addSpriteFrameWithFile( 'res/images/spacebar2.png' );
-    //    console.log( animation.getDelayPerUnit() );
-    //    animation.setDelayPerUnit( 0.2 );
-    //    return cc.RepeatForever.create( cc.Animate.create( animation ) );
-    //}
 });
 var StartScene = cc.Scene.extend({
     onEnter: function() {

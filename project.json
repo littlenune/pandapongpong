@@ -22,16 +22,6 @@
         "src/Icecream.js",
         "src/Panda.js",
         "src/Score.js",
-        "src/One.js",
-        "src/Two.js",
-        "src/Three.js",
-        "src/Four.js",
-        "src/Five.js",
-        "src/Six.js",
-        "src/Seven.js",
-        "src/Eight.js",
-        "src/Nine.js",
-        "src/Zero.js",
         "src/Spacebar.js"
     ]
 }
