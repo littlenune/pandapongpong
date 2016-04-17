@@ -39,6 +39,7 @@ var GameLayer = cc.LayerColor.extend({
 
         //this.scoreCount = 0;
         //this.jump == false;
+        cc.audioEngine.playEffect( 'res/effect/gameSong.mp3',true );
         this.startGame = false;
         return true;
     },

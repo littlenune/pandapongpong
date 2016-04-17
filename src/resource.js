@@ -21,7 +21,9 @@ var res = {
     zero_png: 'res/images/number/zero.png',
     spacebar_png: 'res/iamges/spacebar.png',
     spacebar2_png: 'res/images/spacebar2.png',
-    eatSound_wav: 'res/effect/eatSound.wav'
+    eatSound_wav: 'res/effect/eatSound.wav',
+    gameSong_mp3: 'res/effect/gameSong.mp3',
+    tata_mp3: 'res/effect/tata.mp3'
 };
 var g_resources = [];
 for (var i in res) {
