@@ -8,6 +8,12 @@ var Player = cc.Sprite.extend({
         this.velocity = 0;
 
     },
+
+    update : function (){
+        var pos = this.getPosition();
+        if ( pos.y > 150 )
+            this.setPosition( new cc.Point( pos.x, pos.y - 2 ) );
+    },
     updateLEFT: function (){
         var position = this.getPosition();
         this.initWithFile('res/images/pandaRun.png');
@@ -24,8 +30,8 @@ var Player = cc.Sprite.extend({
             this.setPosition ( new cc.Point ( position.x , position.y ) );
         }
     },
-    updateJUMP: function(){
-        this.vy = 15;
+    updateJUMP : function(){
+        this.vy = 150;
         var pos = this.getPosition();
         this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
         this.vy += -1;
