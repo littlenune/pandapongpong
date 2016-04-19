@@ -10,8 +10,6 @@ var Bread = cc.Sprite.extend({
         if ( this.started ){
             var pos = this.getPosition();
             this.setPosition( new cc.Point( pos.x, pos.y - this.vy ) );
-            //this.vy += -0.025;
-
         }
         if ( this.getPosition().y == -10)
             this.randomPosition();
@@ -28,8 +26,8 @@ var Bread = cc.Sprite.extend({
     closeTo: function( obj ) {
         var myPos = this.getPosition();
         var oPos = obj.getPosition();
-        return ( Math.abs( myPos.x - oPos.x) <= 10) &&
-            ( Math.abs(myPos.y - oPos.y)  <= 10 );
+        return ( Math.abs( myPos.x - oPos.x) <= 30) &&
+            ( Math.abs(myPos.y - oPos.y)  <= 30 );
 
     }
 });

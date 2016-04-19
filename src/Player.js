@@ -5,39 +5,25 @@ var Player = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/panda.png' );
-        this.velocity = 0;
+        this.direction = 2;
 
     },
-
     update : function (){
         var pos = this.getPosition();
-        if ( pos.y > 150 )
+        if (  pos.y > 150 )
             this.setPosition( new cc.Point( pos.x, pos.y - 5 ) );
-    },
-    updateLEFT: function (){
-        var position = this.getPosition();
-        this.initWithFile('res/images/pandaRun.png');
-        if (  position.x - 100 >= 0 ) {
-            position.x -= (100+this.velocity);
-            this.setPosition(new cc.Point(position.x, position.y));
-        }
-    },
-    updateRIGHT: function(){
-        var position = this.getPosition();
-        this.initWithFile('res/images/pandaRun.png');
-        if ( position.x + 100 <= screenWidth  ) {
-            position.x += (100+this.velocity);
-            this.setPosition ( new cc.Point ( position.x , position.y ) );
-        }
+        else if ( this.direction == 0  && pos.x > 0)
+            this.setPosition( new cc.Point( pos.x - 10 , pos.y ) );
+        else if ( this.direction == 1 && pos.x < screenWidth )
+            this.setPosition( new cc.Point( pos.x + 10 , pos.y ) );
     },
     updateJUMP : function(){
         this.vy = 150;
         var pos = this.getPosition();
         this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
         this.vy += -1;
+    },
+    setDirection : function(direction){
+        this.direction = direction;
     }
 });
-Player.DIR = {
-    LEFT : cc.KEY.left,
-    RIGHT : cc.KEY.right,
-};

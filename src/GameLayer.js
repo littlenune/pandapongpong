@@ -12,7 +12,7 @@ var GameLayer = cc.LayerColor.extend({
         this.player = new Player();
         this.player.setPosition(new cc.Point( screenWidth / 2 , 150 ));
         this.addChild(this.player);
-        this.player.scheduleUpdate();
+        //this.player.scheduleUpdate();
 
         this.addKeyboardHandlers();
 
@@ -34,7 +34,6 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.spacebar);
         this.spacebar.setPosition( new cc.Point ( screenWidth / 2 , 350 ));
 
-        //this.jump == false;
         cc.audioEngine.playEffect( 'res/effect/gameSong.mp3',true );
         this.startGame = false;
         return true;
@@ -59,14 +58,17 @@ var GameLayer = cc.LayerColor.extend({
             this.createItem();
             this.createBomb();
         }
-        if ( keyCode == cc.KEY.left ) {
-            this.player.updateLEFT();
+        if ( keyCode == 37 ) {
+            this.player.setDirection(0);
+            this.player.scheduleUpdate();
         }
-        else if ( keyCode == cc.KEY.right ){
-            this.player.updateRIGHT();
+        else if ( keyCode == 39 ){
+            this.player.setDirection(1);
+            this.player.scheduleUpdate();
         }
         else if ( keyCode == cc.KEY.up) {
             this.player.updateJUMP();
+            this.player.scheduleUpdate();
         }
     },
     onKeyUp: function( keyCode, event ) {
@@ -74,48 +76,51 @@ var GameLayer = cc.LayerColor.extend({
         if ( this.jump == true ) {
             this.player.setPosition(this.player.getPosition().x, this.player.getPosition.y -= 1);
         }
+        else {
+            this.player.setDirection(3);
+        }
     },
     update : function() {
-            if ( this.startGame == true ) {
-                for ( var i = 0 ; i <= 1 ; i++) {
-                    if (this.bread[i].closeTo(this.player)) {
-                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                        this.scoreCount+=1;
-                        //this.updateScore(this.scoreCount);
-                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
-                        this.player.initWithFile('res/images/pandaEat.png');
-                        this.bread[i].randomPosition();
-                    }
-                    else if (this.icecream[i].closeTo(this.player)) {
-                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                        this.scoreCount+=5;
-                        //this.updateScore(this.scoreCount);
-                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
-                        this.player.initWithFile('res/images/pandaEat.png');
-                        this.icecream[i].randomPosition();
-                    }
-                    else if (this.candy[i].closeTo(this.player)) {
-                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                        this.scoreCount+10;
-                        //this.updateScore(this.scoreCount);
-                        this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
-                        this.player.initWithFile('res/images/pandaEat.png');
-                        this.candy[i].randomPosition();
-                    }
-                    else if (this.bomb[i].closeTo(this.player)) {
-                        var lifeCount = parseInt(this.lifeLabel.string) - 1;
-                        cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                        this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
-                        this.player.initWithFile('res/images/pandaEat.png');
-                        this.bomb[i].randomPosition();
-                        if ( lifeCount == 0){
-                            this.startGame == false;
-                            cc.audioEngine.end();
-                            cc.audioEngine.playEffect( 'res/effect/tata.mp3',true );
-                        }
+        if ( this.startGame == true ) {
+            for ( var i = 0 ; i <= 1 ; i++) {
+                if (this.bread[i].closeTo(this.player)) {
+                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
+                    this.scoreCount+=1;
+                    //this.updateScore(this.scoreCount);
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.bread[i].randomPosition();
+                }
+                else if (this.icecream[i].closeTo(this.player)) {
+                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
+                    this.scoreCount+=5;
+                    //this.updateScore(this.scoreCount);
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.icecream[i].randomPosition();
+                }
+                else if (this.candy[i].closeTo(this.player)) {
+                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
+                    this.scoreCount+=10;
+                    //this.updateScore(this.scoreCount);
+                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.candy[i].randomPosition();
+                }
+                else if (this.bomb[i].closeTo(this.player)) {
+                    var lifeCount = parseInt(this.lifeLabel.string) - 1;
+                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
+                    this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
+                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.bomb[i].randomPosition();
+                    if ( lifeCount == 0){
+                        this.startGame == false;
+                        cc.audioEngine.end();
+                        cc.audioEngine.playEffect( 'res/effect/tata.mp3',true );
                     }
                 }
             }
+        }
     },
     createIcecream : function() {
         this.icecream = [];
