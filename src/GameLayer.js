@@ -12,7 +12,7 @@ var GameLayer = cc.LayerColor.extend({
         this.player = new Player();
         this.player.setPosition(new cc.Point( screenWidth / 2 , 150 ));
         this.addChild(this.player);
-        //this.player.scheduleUpdate();
+        this.player.scheduleUpdate();
 
         this.addKeyboardHandlers();
 
@@ -57,14 +57,20 @@ var GameLayer = cc.LayerColor.extend({
             this.startGame = true;
             this.createItem();
             this.createBomb();
+            this.monster = new Monster();
+            this.monster.setPosition( new cc.Point( 0 , 95));
+            this.addChild(this.monster);
+            this.monster.scheduleUpdate();
         }
         if ( keyCode == 37 ) {
             this.player.setDirection(0);
             this.player.scheduleUpdate();
+            this.player.initWithFile( 'res/images/pandaRun.png' );
         }
         else if ( keyCode == 39 ){
             this.player.setDirection(1);
             this.player.scheduleUpdate();
+            this.player.initWithFile( 'res/images/pandaRun.png' );
         }
         else if ( keyCode == cc.KEY.up) {
             this.player.updateJUMP();
@@ -84,41 +90,37 @@ var GameLayer = cc.LayerColor.extend({
         if ( this.startGame == true ) {
             for ( var i = 0 ; i <= 1 ; i++) {
                 if (this.bread[i].closeTo(this.player)) {
-                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                    this.scoreCount+=1;
-                    //this.updateScore(this.scoreCount);
+                    cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.bread[i].randomPosition();
                 }
                 else if (this.icecream[i].closeTo(this.player)) {
-                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                    this.scoreCount+=5;
-                    //this.updateScore(this.scoreCount);
+                    cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.icecream[i].randomPosition();
                 }
                 else if (this.candy[i].closeTo(this.player)) {
-                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                    this.scoreCount+=10;
-                    //this.updateScore(this.scoreCount);
+                    cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.candy[i].randomPosition();
                 }
-                else if (this.bomb[i].closeTo(this.player)) {
-                    var lifeCount = parseInt(this.lifeLabel.string) - 1;
-                    cc.audioEngine.playEffect( 'res/effect/eatSound.wav' );
-                    this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.bomb[i].randomPosition();
-                    if ( lifeCount == 0){
-                        this.startGame == false;
-                        cc.audioEngine.end();
-                        cc.audioEngine.playEffect( 'res/effect/tata.mp3',true );
-                    }
-                }
+            }
+                    for ( var i = 0 ; i <= 2 ; i++){
+                        if (this.bomb[i].closeTo(this.player)) {
+                            var lifeCount = parseInt(this.lifeLabel.string) - 1;
+                            cc.audioEngine.playEffect('res/effect/eatSound.wav');
+                            this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
+                            this.player.initWithFile('res/images/pandaEat.png');
+                            this.bomb[i].randomPosition();
+                            if (lifeCount == 0) {
+                                 this.startGame == false;
+                                cc.audioEngine.end();
+                                cc.audioEngine.playEffect('res/effect/tata.mp3', true);
+                     }
+                 }
             }
         }
     },
@@ -170,6 +172,10 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.bomb[1]);
         this.bomb[1].randomPosition();
         this.bomb[1].scheduleUpdate();
+        this.bomb[2] = new Bomb();
+        this.addChild( this.bomb[2] );
+        this.bomb[2].randomPosition();
+        this.bomb[2].scheduleUpdate();
     },
 });
 var StartScene = cc.Scene.extend({

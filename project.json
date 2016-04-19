@@ -22,6 +22,7 @@
         "src/Icecream.js",
         "src/Panda.js",
         "src/Score.js",
-        "src/Spacebar.js"
+        "src/Spacebar.js",
+        "src/Monster.js"
     ]
 }
