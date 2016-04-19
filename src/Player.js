@@ -12,7 +12,7 @@ var Player = cc.Sprite.extend({
     update : function (){
         var pos = this.getPosition();
         if ( pos.y > 150 )
-            this.setPosition( new cc.Point( pos.x, pos.y - 2 ) );
+            this.setPosition( new cc.Point( pos.x, pos.y - 5 ) );
     },
     updateLEFT: function (){
         var position = this.getPosition();
