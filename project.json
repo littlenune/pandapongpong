@@ -23,6 +23,7 @@
         "src/Panda.js",
         "src/Score.js",
         "src/Spacebar.js",
-        "src/Monster.js"
+        "src/Monster.js",
+        "src/BabyPanda.js"
     ]
 }
