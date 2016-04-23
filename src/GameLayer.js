@@ -58,18 +58,6 @@ var GameLayer = cc.LayerColor.extend({
             this.createItem();
             this.createBomb();
             this.createBaby();
-            //this.monster = new Monster();
-            //this.monster.setPosition( new cc.Point( 0 , 95));
-            //this.addChild(this.monster);
-            //this.monster.scheduleUpdate();
-            //this.baby = new Babypanda();
-            //this.baby.setPosition( new cc.Point ( 0, 112.5));
-            //this.addChild(this.baby);
-            //this.baby.scheduleUpdate();
-            //this.baby2 = new Babypanda();
-            //this.baby2.setPosition( new cc.Point ( 800, 112.5));
-            //this.addChild(this.baby2);
-            //this.baby2.scheduleUpdate();
         }
         if ( keyCode == 37 ) {
             this.player.setDirection(0);
