@@ -11,8 +11,6 @@ var Bomb = cc.Sprite.extend({
         if ( this.started ){
             var pos = this.getPosition();
             this.setPosition( new cc.Point( pos.x, pos.y - this.vy ) );
-            //this.vy += -0.025;
-
         }
         if ( this.getPosition().y == -10)
             this.randomPosition();
