@@ -57,10 +57,19 @@ var GameLayer = cc.LayerColor.extend({
             this.startGame = true;
             this.createItem();
             this.createBomb();
-            this.monster = new Monster();
-            this.monster.setPosition( new cc.Point( 0 , 95));
-            this.addChild(this.monster);
-            this.monster.scheduleUpdate();
+            this.createBaby();
+            //this.monster = new Monster();
+            //this.monster.setPosition( new cc.Point( 0 , 95));
+            //this.addChild(this.monster);
+            //this.monster.scheduleUpdate();
+            //this.baby = new Babypanda();
+            //this.baby.setPosition( new cc.Point ( 0, 112.5));
+            //this.addChild(this.baby);
+            //this.baby.scheduleUpdate();
+            //this.baby2 = new Babypanda();
+            //this.baby2.setPosition( new cc.Point ( 800, 112.5));
+            //this.addChild(this.baby2);
+            //this.baby2.scheduleUpdate();
         }
         if ( keyCode == 37 ) {
             this.player.setDirection(0);
@@ -73,7 +82,6 @@ var GameLayer = cc.LayerColor.extend({
             this.player.initWithFile( 'res/images/pandaRun.png' );
         }
         else if ( keyCode == cc.KEY.up) {
-            this.player.updateJUMP();
             this.player.scheduleUpdate();
         }
     },
@@ -94,6 +102,7 @@ var GameLayer = cc.LayerColor.extend({
                     this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.bread[i].randomPosition();
+                    this.createBaby();
                 }
                 else if (this.icecream[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
@@ -119,10 +128,19 @@ var GameLayer = cc.LayerColor.extend({
                                  this.startGame == false;
                                 cc.audioEngine.end();
                                 cc.audioEngine.playEffect('res/effect/tata.mp3', true);
-                     }
-                 }
+                        }
+                    }
+                        if ( this.bomb[i].closeTo(this.baby)){
+                            this.removeChild(this.baby);
+                        }
             }
         }
+    },
+    createBaby : function(){
+        this.baby = new Babypanda();
+        this.baby.setPosition( new cc.Point ( 0, 112.5));
+        this.addChild(this.baby);
+        this.baby.scheduleUpdate();
     },
     createIcecream : function() {
         this.icecream = [];

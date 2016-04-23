@@ -5,7 +5,7 @@ var Candy = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/candy.png' );
-        this.vy = 5;
+        this.vy = 4;
         this.started = true;
 
     },

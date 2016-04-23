@@ -17,12 +17,6 @@ var Player = cc.Sprite.extend({
         else if ( this.direction == 1 && pos.x < screenWidth )
             this.setPosition( new cc.Point( pos.x + 10 , pos.y ) );
     },
-    updateJUMP : function(){
-        this.vy = 200;
-        var pos = this.getPosition();
-        this.setPosition( new cc.Point( pos.x, pos.y + this.vy ) );
-        this.vy += -1;
-    },
     setDirection : function(direction){
         this.direction = direction;
     }

@@ -3,7 +3,7 @@ var Bomb = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/bomb.png' );
-        this.vy = 5;
+        this.vy = 10;
         this.started = true;
 
     },
