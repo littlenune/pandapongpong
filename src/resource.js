@@ -15,7 +15,8 @@ var res = {
     gameSong_mp3: 'res/effect/gameSong.mp3',
     tata_mp3: 'res/effect/tata.mp3',
     monster_png: 'res/images/monster.png',
-    baby_png: 'res/images/baby.png'
+    baby_png: 'res/images/baby.png',
+    cupcake_png: 'res/images/cupcake.png'
 };
 var g_resources = [];
 for (var i in res) {

@@ -3,7 +3,7 @@ var Bomb = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/bomb.png' );
-        this.vy = 10;
+        this.vy = 7;
         this.started = true;
 
     },
@@ -21,7 +21,7 @@ var Bomb = cc.Sprite.extend({
     randomPosition: function() {
         var x,y;
         x = 100+(100*Math.round((Math.random()*5)));
-        y = 650+((100*Math.round((Math.random()*5))));
+        y = 650+((200*Math.round((Math.random()*10))));
         return this.setPosition( new cc.Point( x, y ) );
     },
     closeTo: function( obj ) {

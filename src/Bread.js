@@ -2,7 +2,7 @@ var Bread = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/bread.png' );
-        this.vy = 3;
+        this.vy = 5;
         this.started = true;
 
     },
