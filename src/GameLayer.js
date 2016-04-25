@@ -138,6 +138,7 @@ var GameLayer = cc.LayerColor.extend({
                     }
                 }
                 if (this.babyCount > 0) {
+                    this.checkBabyEat();
                     for ( var k = 1 ; k <= this.babyCount ; k++){
                     if (this.bomb[j].closeTo(this.baby[k])) {
                         this.removeChild(this.baby[k]);
@@ -223,39 +224,25 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.howToPlay);
     },
     checkBabyEat : function () {
-        for ( var i = 0 ; i <= 1 ; i++) {
-            for (var j = 0; j < this.babyCount; i++) {
+        for ( var j = 1 ; j <= this.babyCount ; j++) {
+            for (var i = 0; i <= 1; i++) {
                 if (this.bread[i].closeTo(this.baby[j])) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
                     this.baby[j].initWithFile('res/images/babyEat.png');
                     this.bread[i].randomPosition();
-                    this.createBomb();
-
                 }
                 else if (this.icecream[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
-                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.baby[j].initWithFile('res/images/babyEat.png');
                     this.icecream[i].randomPosition();
-                    this.createBomb();
-
                 }
                 else if (this.candy[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
-                    this.player.initWithFile('res/images/pandaEat.png');
+                    this.baby[j].initWithFile('res/images/babyEat.png');
                     this.candy[i].randomPosition();
-                    this.createBomb();
-
-
-                }
-                else if (this.cupcake[i].closeTo(this.player)) {
-                    cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.cupcake[i].randomPosition();
-                    this.createBaby();
-                    this.createBomb();
                 }
             }
         }
