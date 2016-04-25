@@ -23,6 +23,10 @@
         "src/Panda.js",
         "src/Score.js",
         "src/Spacebar.js",
-        "src/BabyPanda.js"
+        "src/BabyPanda.js",
+        "src/Cupcake.js",
+        "src/HowToPlay.js",
+        "src/GameOver.js",
+        "src/GameOverPage.js"
     ]
 }
