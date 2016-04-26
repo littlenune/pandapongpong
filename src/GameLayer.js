@@ -92,7 +92,7 @@ var GameLayer = cc.LayerColor.extend({
                 if (this.bread[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 1;
-                    this.scoreLabel.setString( score2 );
+                    this.scoreLabel.setString( scoreTotal );
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.bread[i].randomPosition();
                     this.createBomb();
@@ -101,7 +101,7 @@ var GameLayer = cc.LayerColor.extend({
                 else if (this.icecream[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 5;
-                    this.scoreLabel.setString(score2);
+                    this.scoreLabel.setString(scoreTotal);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.icecream[i].randomPosition();
                     this.createBomb();
@@ -110,7 +110,7 @@ var GameLayer = cc.LayerColor.extend({
                 else if (this.candy[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 10;
-                    this.scoreLabel.setString(score2);
+                    this.scoreLabel.setString(scoreTotal);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.candy[i].randomPosition();
                     this.createBomb();
