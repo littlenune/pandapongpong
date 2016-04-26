@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7c4d08c-c2e0-4582-946c-d77e0b0573e2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/images/howtoplay1.png" afterPath="$PROJECT_DIR$/res/images/howtoplay1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/images/howtoplay2.png" afterPath="$PROJECT_DIR$/res/images/howtoplay2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameLayer.js" afterPath="$PROJECT_DIR$/src/GameLayer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/resource.js" afterPath="$PROJECT_DIR$/src/resource.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/GameOverPage.js" afterPath="$PROJECT_DIR$/src/GameOverPage.js" />
     </list>
     <ignored path="pandapongpong.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,29 +31,33 @@
       <file leaf-file-name="GameLayer.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GameLayer.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21296297">
-              <caret line="226" column="30" selection-start-line="226" selection-start-column="30" selection-end-line="226" selection-end-column="30" />
+            <state vertical-scroll-proportion="-2.3101852">
+              <caret line="125" column="8" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="resource.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/resource.js">
+      <file leaf-file-name="GameOverPage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GameOverPage.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="23" selection-end-column="25" />
-              <folding />
+              <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+              <folding>
+                <element signature="e#0#43#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Bomb.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Bomb.js">
+      <file leaf-file-name="HowToPlay.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/HowToPlay.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="23" column="53" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="53" />
-              <folding />
+              <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+              <folding>
+                <element signature="e#0#43#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -105,11 +112,11 @@
         <option value="$PROJECT_DIR$/src/Bread.js" />
         <option value="$PROJECT_DIR$/src/GameOver.js" />
         <option value="$PROJECT_DIR$/project.json" />
-        <option value="$PROJECT_DIR$/src/GameOverPage.js" />
         <option value="$PROJECT_DIR$/src/Cupcake.js" />
         <option value="$PROJECT_DIR$/src/Bomb.js" />
         <option value="$PROJECT_DIR$/src/HowToPlay.js" />
         <option value="$PROJECT_DIR$/src/resource.js" />
+        <option value="$PROJECT_DIR$/src/GameOverPage.js" />
         <option value="$PROJECT_DIR$/src/GameLayer.js" />
       </list>
     </option>
@@ -155,7 +162,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -223,7 +230,7 @@
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -732,12 +739,13 @@
       <workItem from="1461293738978" duration="1409000" />
       <workItem from="1461426043054" duration="2792000" />
       <workItem from="1461509355499" duration="3823000" />
-      <workItem from="1461553672211" duration="8622000" />
+      <workItem from="1461553672211" duration="8707000" />
+      <workItem from="1461634400018" duration="1738000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="99225000" />
+    <option name="totallyTimeSpent" value="101048000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -1064,27 +1072,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.31019202">
           <caret line="14" column="3" selection-start-line="14" selection-start-column="3" selection-end-line="14" selection-end-column="3" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GameOverPage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31019202">
-          <caret line="16" column="54" selection-start-line="16" selection-start-column="54" selection-end-line="16" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/HowToPlay.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.31019202">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#43#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1115,7 +1102,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17725259">
           <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1129,26 +1115,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Bomb.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="53" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/resource.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.5092593">
           <caret line="22" column="48" selection-start-line="22" selection-start-column="48" selection-end-line="23" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bomb.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5324074">
+          <caret line="23" column="53" selection-start-line="23" selection-start-column="16" selection-end-line="23" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/HowToPlay.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="26" column="3" selection-start-line="26" selection-start-column="3" selection-end-line="26" selection-end-column="3" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GameOverPage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="34" selection-start-line="18" selection-start-column="34" selection-end-line="18" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#43#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GameLayer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21296297">
-          <caret line="226" column="30" selection-start-line="226" selection-start-column="30" selection-end-line="226" selection-end-column="30" />
+        <state vertical-scroll-proportion="-2.3101852">
+          <caret line="125" column="8" selection-start-line="125" selection-start-column="8" selection-end-line="125" selection-end-column="8" />
           <folding />
         </state>
       </provider>

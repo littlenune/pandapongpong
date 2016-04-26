@@ -8,6 +8,9 @@ var GameOverPage = cc.LayerColor.extend({
         this.addChild(this.gameover);
         this.gameover.setPosition( new cc.Point(screenWidth / 2 , screenHeight/2 ));
         this.createRestartButton();
+        this.scoreTotalLabel = cc.LabelTTF.create( scoreTotal, 'Phosphate', 60 );
+        this.scoreTotalLabel.setPosition( new cc.Point( 550, 400 ) );
+        this.addChild( this.scoreTotalLabel , 1);
     },
     createRestartButton : function() {
         this.restartImage = new cc.MenuItemImage('res/images/restart.png', 'res/images/restart2.png', function () {
@@ -17,6 +20,7 @@ var GameOverPage = cc.LayerColor.extend({
         this.restart.setPosition(new cc.Point(screenWidth / 2, 150));
         this.addChild(this.restart);
         cc.audioEngine.playEffect('res/effect/tata.mp3',true);
+        scoreTotal = 0;
     }
 });
 

@@ -39,6 +39,7 @@ var GameLayer = cc.LayerColor.extend({
 
         cc.audioEngine.playEffect( 'res/effect/gameSong.mp3',true );
         this.startGame = false;
+
         return true;
     },
     addKeyboardHandlers: function() {
@@ -90,7 +91,8 @@ var GameLayer = cc.LayerColor.extend({
             for ( var i = 0 ; i <= 1 ; i++) {
                 if (this.bread[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+                    scoreTotal += 1;
+                    this.scoreLabel.setString( score2 );
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.bread[i].randomPosition();
                     this.createBomb();
@@ -98,7 +100,8 @@ var GameLayer = cc.LayerColor.extend({
                 }
                 else if (this.icecream[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
+                    scoreTotal += 5;
+                    this.scoreLabel.setString(score2);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.icecream[i].randomPosition();
                     this.createBomb();
@@ -106,7 +109,8 @@ var GameLayer = cc.LayerColor.extend({
                 }
                 else if (this.candy[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
+                    scoreTotal += 10;
+                    this.scoreLabel.setString(score2);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.candy[i].randomPosition();
                     this.createBomb();
@@ -256,3 +260,4 @@ var StartScene = cc.Scene.extend({
         this.addChild( layer );
     }
 });
+var scoreTotal  = 0;
