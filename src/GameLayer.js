@@ -29,17 +29,18 @@ var GameLayer = cc.LayerColor.extend({
 
         this.panda = new Panda();
         this.addChild(this.panda);
+
         this.bomb = [];
         this.baby = [];
         this.bombCount = 0;
         this.babyCount = 0;
+
         this.spacebar = new Spacebar();
         this.addChild(this.spacebar);
         this.spacebar.setPosition( new cc.Point ( screenWidth / 2 , 350 ));
 
         cc.audioEngine.playEffect( 'res/effect/gameSong.mp3',true );
         this.startGame = false;
-
         return true;
     },
     addKeyboardHandlers: function() {
@@ -62,6 +63,7 @@ var GameLayer = cc.LayerColor.extend({
             this.startGame = true;
             this.createItem();
             this.createBomb();
+            //this.createBaby();
         }
         if ( keyCode == 37 ) {
             this.player.setDirection(0);
@@ -95,7 +97,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.scoreLabel.setString( scoreTotal );
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.bread[i].randomPosition();
-                    this.createBomb();
 
                 }
                 else if (this.icecream[i].closeTo(this.player)) {
@@ -104,7 +105,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.scoreLabel.setString(scoreTotal);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.icecream[i].randomPosition();
-                    this.createBomb();
 
                 }
                 else if (this.candy[i].closeTo(this.player)) {
@@ -113,7 +113,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.scoreLabel.setString(scoreTotal);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.candy[i].randomPosition();
-                    this.createBomb();
 
 
                 }
@@ -128,7 +127,6 @@ var GameLayer = cc.LayerColor.extend({
             if ( this.bombCount > 0){
             for ( var j = 1 ; j <= this.bombCount ; j++) {
                 if (this.bomb[j].closeTo(this.player)) {
-                    this.createBomb();
                     var lifeCount = parseInt(this.lifeLabel.string) - 1;
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
@@ -228,29 +226,35 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.howToPlay);
     },
     checkBabyEat : function () {
+        for (var i = 0; i <= 1; i++) {
         for ( var j = 1 ; j <= this.babyCount ; j++) {
-            for (var i = 0; i <= 1; i++) {
                 if (this.bread[i].closeTo(this.baby[j])) {
+                    console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 1);
+                    scoreTotal += 1;
+                    this.scoreLabel.setString( scoreTotal );
                     this.baby[j].initWithFile('res/images/babyEat.png');
                     this.bread[i].randomPosition();
                 }
                 else if (this.icecream[i].closeTo(this.player)) {
+                    console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 5);
+                    scoreTotal += 5;
+                    this.scoreLabel.setString( scoreTotal );
                     this.baby[j].initWithFile('res/images/babyEat.png');
                     this.icecream[i].randomPosition();
                 }
                 else if (this.candy[i].closeTo(this.player)) {
+                    console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.scoreLabel.setString(parseInt(this.scoreLabel.string) + 10);
+                    scoreTotal += 10;
+                    this.scoreLabel.setString( scoreTotal );
                     this.baby[j].initWithFile('res/images/babyEat.png');
                     this.candy[i].randomPosition();
                 }
             }
         }
-    }
+    },
 });
 var StartScene = cc.Scene.extend({
     onEnter: function() {

@@ -9,7 +9,7 @@ var GameOverPage = cc.LayerColor.extend({
         this.gameover.setPosition( new cc.Point(screenWidth / 2 , screenHeight/2 ));
         this.createRestartButton();
         this.scoreTotalLabel = cc.LabelTTF.create( scoreTotal, 'Phosphate', 60 );
-        this.scoreTotalLabel.setPosition( new cc.Point( 550, 400 ) );
+        this.scoreTotalLabel.setPosition( new cc.Point( 550, 300 ) );
         this.addChild( this.scoreTotalLabel , 1);
     },
     createRestartButton : function() {

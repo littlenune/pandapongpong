@@ -3,7 +3,7 @@ var Bomb = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/bomb.png' );
-        this.vy = 8;
+        this.vy = 15;
         this.started = true;
 
     },
@@ -27,8 +27,8 @@ var Bomb = cc.Sprite.extend({
     closeTo: function( obj ) {
         var myPos = this.getPosition();
         var oPos = obj.getPosition();
-        return ( Math.abs( myPos.x - oPos.x) <= 30) &&
-            ( Math.abs(myPos.y - oPos.y)  <= 30 );
+        return ( Math.abs( myPos.x - oPos.x) <= 70) &&
+            ( Math.abs(myPos.y - oPos.y)  <= 70 );
 
     }
 });
