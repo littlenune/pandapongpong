@@ -41,6 +41,7 @@ var GameLayer = cc.LayerColor.extend({
 
         cc.audioEngine.playEffect( 'res/effect/gameSong.mp3',true );
         this.startGame = false;
+
         return true;
     },
     addKeyboardHandlers: function() {
@@ -224,6 +225,7 @@ var GameLayer = cc.LayerColor.extend({
         this.howToPlay = new cc.Menu(this.howToPlayImage);
         this.howToPlay.setPosition(new cc.Point(screenWidth / 2, 300));
         this.addChild(this.howToPlay);
+
     },
     checkBabyEat : function () {
         for (var i = 0; i <= 1; i++) {
@@ -236,7 +238,7 @@ var GameLayer = cc.LayerColor.extend({
                     this.baby[j].initWithFile('res/images/babyEat.png');
                     this.bread[i].randomPosition();
                 }
-                else if (this.icecream[i].closeTo(this.player)) {
+                if (this.icecream[i].closeTo(this.baby[j])) {
                     console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 5;
@@ -244,11 +246,11 @@ var GameLayer = cc.LayerColor.extend({
                     this.baby[j].initWithFile('res/images/babyEat.png');
                     this.icecream[i].randomPosition();
                 }
-                else if (this.candy[i].closeTo(this.player)) {
+                if (this.candy[i].closeTo(this.baby[j])) {
                     console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 10;
-                    this.scoreLabel.setString( scoreTotal );
+                    this.scoreLabel.setString(scoreTotal);
                     this.baby[j].initWithFile('res/images/babyEat.png');
                     this.candy[i].randomPosition();
                 }

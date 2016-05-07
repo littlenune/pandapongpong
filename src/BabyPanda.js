@@ -5,6 +5,7 @@ var Babypanda = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/baby.png' );
+        this.setPosition( new cc.Point ( 0 , 112.5 ));
         this.vy = 0;
     },
     update: function(){

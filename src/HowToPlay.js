@@ -15,6 +15,7 @@ var HowToPlay = cc.Sprite.extend({
         this.back = new cc.Menu(this.backButton);
         this.back.setPosition(new cc.Point(100, 150));
         this.addChild(this.back);
+        cc.audioEngine.playEffect('res/effect/gameSong.mp3',true);
     }
 });
 var HowToPlayScene = cc.Scene.extend({
@@ -23,5 +24,6 @@ var HowToPlayScene = cc.Scene.extend({
         var layer = new HowToPlay();
         layer.init();
         this.addChild( layer );
+
     }
 });

@@ -27,8 +27,7 @@ var Bomb = cc.Sprite.extend({
     closeTo: function( obj ) {
         var myPos = this.getPosition();
         var oPos = obj.getPosition();
-        return ( Math.abs( myPos.x - oPos.x) <= 70) &&
-            ( Math.abs(myPos.y - oPos.y)  <= 70 );
-
+        return ( Math.abs( myPos.x - oPos.x) <= 50) &&
+            ( Math.abs(myPos.y - oPos.y)  <= 50 );
     }
 });
