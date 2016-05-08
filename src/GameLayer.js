@@ -64,7 +64,6 @@ var GameLayer = cc.LayerColor.extend({
             this.startGame = true;
             this.createItem();
             this.createBomb();
-            //this.createBaby();
         }
         if ( keyCode == 37 ) {
             this.player.setDirection(0);
@@ -82,12 +81,6 @@ var GameLayer = cc.LayerColor.extend({
     },
     onKeyUp: function( keyCode, event ) {
         this.player.initWithFile( 'res/images/panda.png' );
-        if ( this.jump == true ) {
-            this.player.setPosition(this.player.getPosition().x, this.player.getPosition.y -= 1);
-        }
-        else {
-            this.player.setDirection(3);
-        }
     },
     update : function() {
         if ( this.startGame == true ) {
@@ -98,7 +91,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.scoreLabel.setString( scoreTotal );
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.bread[i].randomPosition();
-
                 }
                 else if (this.icecream[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
@@ -106,7 +98,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.scoreLabel.setString(scoreTotal);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.icecream[i].randomPosition();
-
                 }
                 else if (this.candy[i].closeTo(this.player)) {
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
@@ -114,7 +105,7 @@ var GameLayer = cc.LayerColor.extend({
                     this.scoreLabel.setString(scoreTotal);
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.candy[i].randomPosition();
-
+                    this.createBomb();
 
                 }
                 else if ( this.cupcake[i].closeTo(this.player)){
