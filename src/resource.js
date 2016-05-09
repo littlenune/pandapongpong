@@ -19,9 +19,10 @@ var res = {
     howtoplay_png: 'res/images/howtoplay.png',
     gameover_png: 'res/images/gameover.png',
     restart_png: 'res/images/restart.png',
-    howtoplay_png: 'res/images/howtoplay1.png',
+    howtoplay1_png: 'res/images/howtoplay1.png',
     howtoplay2_png: 'res/images/howtoplay2.png',
-    babyEat_png: 'res/images/babyEat.png'
+    babyEat_png: 'res/images/babyEat.png',
+    newBorn_wav: 'res/effect/newBorn.wav'
 };
 var g_resources = [];
 for (var i in res) {

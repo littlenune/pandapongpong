@@ -26,6 +26,7 @@
         "src/Cupcake.js",
         "src/HowToPlay.js",
         "src/GameOver.js",
-        "src/GameOverPage.js"
+        "src/GameOverPage.js",
+        "src/HowToPlaySprite.js"
     ]
 }

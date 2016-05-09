@@ -3,9 +3,9 @@
  */
 var GameLayer = cc.LayerColor.extend({
     init: function() {
+        cc.audioEngine.playMusic( 'res/effect/gameSong.mp3',true );
         this._super(screenHeight,screenWidth);
         this.scheduleUpdate();
-        cc.audioEngine.end();
         this.background = new Background();
         this.addChild(this.background);
         this.background.setPosition( new cc.Point( screenWidth / 2 , screenHeight/2 ));
@@ -39,7 +39,7 @@ var GameLayer = cc.LayerColor.extend({
         this.addChild(this.spacebar);
         this.spacebar.setPosition( new cc.Point ( screenWidth / 2 , 350 ));
 
-        cc.audioEngine.playEffect( 'res/effect/gameSong.mp3',true );
+
         this.startGame = false;
 
         return true;
@@ -109,7 +109,7 @@ var GameLayer = cc.LayerColor.extend({
 
                 }
                 else if ( this.cupcake[i].closeTo(this.player)){
-                    cc.audioEngine.playEffect('res/effect/eatSound.wav');
+                    cc.audioEngine.playEffect('res/effect/newBorn.wav');
                     this.player.initWithFile('res/images/pandaEat.png');
                     this.cupcake[i].randomPosition();
                     this.createBaby();
@@ -117,31 +117,31 @@ var GameLayer = cc.LayerColor.extend({
                 }
             }
             if ( this.bombCount > 0){
-            for ( var j = 1 ; j <= this.bombCount ; j++) {
-                if (this.bomb[j].closeTo(this.player)) {
-                    var lifeCount = parseInt(this.lifeLabel.string) - 1;
-                    cc.audioEngine.playEffect('res/effect/eatSound.wav');
-                    this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
-                    this.player.initWithFile('res/images/pandaEat.png');
-                    this.bomb[j].randomPosition();
-                    this.createBomb();
-                    if (lifeCount == 0) {
-                        this.startGame == false;
-                        cc.audioEngine.end();
-                        cc.director.runScene(new GameOverScreen());
-                    }
-                }
-                if (this.babyCount > 0) {
-                    this.checkBabyEat();
-                    for ( var k = 1 ; k <= this.babyCount ; k++){
-                    if (this.bomb[j].closeTo(this.baby[k])) {
-                        this.removeChild(this.baby[k]);
+                for ( var j = 1 ; j <= this.bombCount ; j++) {
+                    if (this.bomb[j].closeTo(this.player)) {
+                        var lifeCount = parseInt(this.lifeLabel.string) - 1;
+                        cc.audioEngine.playEffect('res/effect/eatSound.wav');
+                        this.lifeLabel.setString(parseInt(this.lifeLabel.string) - 1);
+                        this.player.initWithFile('res/images/pandaEat.png');
                         this.bomb[j].randomPosition();
-                        this.babyCount-=1;
+                        this.createBomb();
+                            if (lifeCount == 0) {
+                                this.startGame == false;
+                                cc.audioEngine.end();
+                                cc.director.runScene(new GameOverScreen());
+                            }
+                        }
+                    if (this.babyCount > 0) {
+                        this.checkBabyEat();
+                        for ( var k = 1 ; k <= this.babyCount ; k++){
+                            if (this.bomb[j].closeTo(this.baby[k])) {
+                                this.removeChild(this.baby[k]);
+                                this.bomb[j].randomPosition();
+                                this.babyCount-=1;
+                            }
                         }
                     }
                 }
-            }
             }
         }
     },
@@ -222,7 +222,6 @@ var GameLayer = cc.LayerColor.extend({
         for (var i = 0; i <= 1; i++) {
         for ( var j = 1 ; j <= this.babyCount ; j++) {
                 if (this.bread[i].closeTo(this.baby[j])) {
-                    console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 1;
                     this.scoreLabel.setString( scoreTotal );
@@ -230,7 +229,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.bread[i].randomPosition();
                 }
                 if (this.icecream[i].closeTo(this.baby[j])) {
-                    console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 5;
                     this.scoreLabel.setString( scoreTotal );
@@ -238,7 +236,6 @@ var GameLayer = cc.LayerColor.extend({
                     this.icecream[i].randomPosition();
                 }
                 if (this.candy[i].closeTo(this.baby[j])) {
-                    console.log('closeTo');
                     cc.audioEngine.playEffect('res/effect/eatSound.wav');
                     scoreTotal += 10;
                     this.scoreLabel.setString(scoreTotal);
