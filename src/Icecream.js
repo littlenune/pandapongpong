@@ -5,7 +5,7 @@ var Icecream = cc.Sprite.extend({
     ctor: function() {
         this._super();
         this.initWithFile( 'res/images/icecream.png' );
-        this.vy = 5;
+        this.vy = 7;
         this.started = true;
 
     },
@@ -13,10 +13,9 @@ var Icecream = cc.Sprite.extend({
         if ( this.started ){
             var pos = this.getPosition();
             this.setPosition( new cc.Point( pos.x, pos.y - this.vy ) );
-            //this.vy += -0.025;
 
         }
-        if ( this.getPosition().y == -10)
+        if ( this.getPosition().y <= -10)
             this.randomPosition();
     },
     start: function() {

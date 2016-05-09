@@ -22,7 +22,8 @@ var res = {
     howtoplay1_png: 'res/images/howtoplay1.png',
     howtoplay2_png: 'res/images/howtoplay2.png',
     babyEat_png: 'res/images/babyEat.png',
-    newBorn_wav: 'res/effect/newBorn.wav'
+    newBorn_wav: 'res/effect/newBorn.wav',
+    bomb_Sound_wav: 'res/effect/bombSound.wav'
 };
 var g_resources = [];
 for (var i in res) {

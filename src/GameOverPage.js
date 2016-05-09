@@ -33,4 +33,4 @@ var GameOverScreen = cc.Scene.extend({
             layer.init();
             this.addChild( layer );
         }
-    });
+});

@@ -14,7 +14,7 @@ var Cupcake = cc.Sprite.extend({
             var pos = this.getPosition();
             this.setPosition( new cc.Point( pos.x, pos.y - this.vy ) );
         }
-        if ( this.getPosition().y == -10)
+        if ( this.getPosition().y <= -10)
             this.randomPosition();
     },
     start: function() {
