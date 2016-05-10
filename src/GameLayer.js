@@ -32,8 +32,6 @@ var GameLayer = cc.LayerColor.extend({
 
         this.bomb = [];
         this.baby = [];
-        this.bombCount = 0;
-        this.babyCount = 0;
 
         this.spacebar = new Spacebar();
         this.addChild(this.spacebar);
